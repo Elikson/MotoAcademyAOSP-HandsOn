@@ -30,21 +30,30 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.btnLogin.setOnClickListener(v -> {
 
-            mAuth.signInWithEmailAndPassword(binding.edtTextEmail.getText().toString(), binding.edtTextSenha.getText().toString())
-                    .addOnCompleteListener(
-                    this, task -> {
-                        if (task.isSuccessful()) {
-                            Log.e("Teste", "Sucesso");
-                            startActivity(new Intent(this, MainActivity.class));
-                            Toast.makeText(this, "login com sucesso", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Log.e("Teste", "Falha");
-                            Log.e("Teste", task.getResult().toString());
-                            Toast.makeText(this, "Falha no login", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-            );
+            try {
+                mAuth.signInWithEmailAndPassword(binding.edtTextEmail.getText().toString(), binding.edtTextSenha.getText().toString())
+                        .addOnCompleteListener(
+                                this, task -> {
+                                    if (task.isSuccessful()) {
+                                        Log.e("Teste", "Sucesso");
+                                        startActivity(new Intent(this, MainActivity.class));
+                                        Toast.makeText(this, "login com sucesso", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        try {
+
+                                            Log.e("Teste", "Falha");
+                                            Log.e("Teste", task.getResult().toString());
+                                            Toast.makeText(this, "Falha no login", Toast.LENGTH_SHORT).show();
+                                        } catch (Exception e){
+                                            Toast.makeText(this, "Revise os campos", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+                        );
+            } catch (Exception e){
+                Toast.makeText(this, "Revise os campos", Toast.LENGTH_SHORT).show();
+            }
         });
 
     }
