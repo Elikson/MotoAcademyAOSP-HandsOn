@@ -4,13 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.assist.AssistStructure;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.rodrigo.tucano.databinding.ActivityMainBinding;
@@ -108,5 +113,27 @@ public class MainActivity extends AppCompatActivity {
                 SystemProperties.read("BLOCK_CAMERA");
             }
         });
+
+
+        binding.cardBtn2.setOnClickListener(v -> {
+            Intent i = new Intent(
+                    Intent.ACTION_VIEW,
+                    CalendarContract.CONTENT_URI.buildUpon().appendPath("time").build()
+            );
+            startActivity(i);
+        });
+
+        binding.cardBtn3.setOnClickListener(v -> {
+            startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+        });
+
+        binding.cardBtn4.setOnClickListener(v -> {
+            Intent i = new Intent(
+                    Intent.ACTION_VIEW,
+                    ContactsContract.Contacts.CONTENT_URI
+            );
+            startActivity(i);
+        });
+
     }
 }

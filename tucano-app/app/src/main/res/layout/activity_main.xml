@@ -55,7 +55,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_camera"
+                    android:src="@drawable/ic_calendar"
                     android:paddingHorizontal="@dimen/_40sdp"
                     android:clickable="false"
                     app:tint="@color/white" />
@@ -81,7 +81,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_camera"
+                    android:src="@drawable/baseline_settings"
                     android:paddingHorizontal="@dimen/_40sdp"
                     android:clickable="false"
                     app:tint="@color/white" />
@@ -102,7 +102,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_camera"
+                    android:src="@drawable/ic_contact"
                     android:paddingHorizontal="@dimen/_40sdp"
                     android:clickable="false"
                     app:tint="@color/white" />
