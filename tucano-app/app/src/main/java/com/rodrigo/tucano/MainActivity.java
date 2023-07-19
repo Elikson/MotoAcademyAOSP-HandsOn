@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        SystemProperties.read("BLOCK_CAMERA");
-        SystemProperties.write("BLOCK_CAMERA", Boolean.toString(cameraIsDisabled));
-        SystemProperties.read("BLOCK_CAMERA");
+        SystemProperties.read("persist.camera.block");
+        SystemProperties.write("persist.camera.block", Boolean.toString(cameraIsDisabled));
+        SystemProperties.read("persist.camera.block");
 
         binding.handleCameraStatusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,8 +109,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Log.e("Btn Selected", (String.valueOf(view.isSelected())));
 
-                SystemProperties.write("BLOCK_CAMERA", Boolean.toString(cameraIsDisabled));
-                SystemProperties.read("BLOCK_CAMERA");
+                SystemProperties.write("persist.camera.block", Boolean.toString(cameraIsDisabled));
+                SystemProperties.read("persist.camera.block");
             }
         });
 
