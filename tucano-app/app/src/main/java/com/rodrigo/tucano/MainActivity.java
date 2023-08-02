@@ -79,7 +79,7 @@ class SystemProperties {
 }
 
 public class MainActivity extends AppCompatActivity {
-    public Boolean cameraIsDisabled = true;
+    public Boolean cameraIsDisabled = false;
 
     ActivityMainBinding binding;
 
@@ -91,10 +91,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        SystemProperties.read("persist.camera.block");
-        SystemProperties.write("persist.camera.block", Boolean.toString(cameraIsDisabled));
-        SystemProperties.read("persist.camera.block");
+        Boolean state = new Boolean(SystemProperties.read("persist.camera.block"));
+        cameraIsDisabled = state;
+//        SystemProperties.write("persist.camera.block", Boolean.toString(cameraIsDisabled));
+//        SystemProperties.read("persist.camera.block");
 
+        binding.handleCameraStatusBtn.setSelected(cameraIsDisabled);
         binding.handleCameraStatusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
