@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "3267128775",
+    "project_id": "fir-login-2d010",
+    "storage_bucket": "fir-login-2d010.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3267128775:android:d5ae7e6760ac5ef223bde2",
+        "android_client_info": {
+          "package_name": "com.project.lab02"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3267128775-519m4h0c0d8nh4gh48v6cr543sk1lud7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoFPLdX8VBgdFjsuxacLWQNUM_wi3HxoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "3267128775-519m4h0c0d8nh4gh48v6cr543sk1lud7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3267128775:android:6cf7f8a907c0290623bde2",
+        "android_client_info": {
+          "package_name": "com.rodrigo.tucano"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3267128775-519m4h0c0d8nh4gh48v6cr543sk1lud7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoFPLdX8VBgdFjsuxacLWQNUM_wi3HxoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "3267128775-519m4h0c0d8nh4gh48v6cr543sk1lud7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

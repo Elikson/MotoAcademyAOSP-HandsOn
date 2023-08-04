@@ -4,14 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.assist.AssistStructure;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.rodrigo.tucano.databinding.ActivityMainBinding;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -72,35 +79,63 @@ class SystemProperties {
 }
 
 public class MainActivity extends AppCompatActivity {
-    public Button handleCameraEnabledBtn = null;
-    public Boolean cameraIsDisabled = true;
+    public Boolean cameraIsDisabled = false;
+
+    ActivityMainBinding binding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        handleCameraEnabledBtn = (Button) findViewById(R.id.handleCameraStatusBtn);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        SystemProperties.read("BLOCK_CAMERA");
-        SystemProperties.write("BLOCK_CAMERA", Boolean.toString(cameraIsDisabled));
-        SystemProperties.read("BLOCK_CAMERA");
+        Boolean state = new Boolean(SystemProperties.read("persist.camera.block"));
+        cameraIsDisabled = state;
+//        SystemProperties.write("persist.camera.block", Boolean.toString(cameraIsDisabled));
+//        SystemProperties.read("persist.camera.block");
 
-        handleCameraEnabledBtn.setOnClickListener(new View.OnClickListener() {
+        binding.handleCameraStatusBtn.setSelected(cameraIsDisabled);
+        binding.handleCameraStatusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (cameraIsDisabled) {
                     cameraIsDisabled = false;
-                    handleCameraEnabledBtn.setText("Camera enabled");
+                    view.setSelected(false);
+//                    binding.handleCameraStatusBtn.setText("Camera enabled");
                 } else {
                     cameraIsDisabled = true;
-                    handleCameraEnabledBtn.setText("Camera disabled");
+                    view.setSelected(true);
+//                    binding.handleCameraStatusBtn.setText("Camera disabled");
                 }
+                Log.e("Btn Selected", (String.valueOf(view.isSelected())));
 
-                SystemProperties.write("BLOCK_CAMERA", Boolean.toString(cameraIsDisabled));
-                SystemProperties.read("BLOCK_CAMERA");
+                SystemProperties.write("persist.camera.block", Boolean.toString(cameraIsDisabled));
+                SystemProperties.read("persist.camera.block");
             }
         });
+
+
+        binding.cardBtn2.setOnClickListener(v -> {
+            Intent i = new Intent(
+                    Intent.ACTION_VIEW,
+                    CalendarContract.CONTENT_URI.buildUpon().appendPath("time").build()
+            );
+            startActivity(i);
+        });
+
+        binding.cardBtn3.setOnClickListener(v -> {
+            startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+        });
+
+        binding.cardBtn4.setOnClickListener(v -> {
+            Intent i = new Intent(
+                    Intent.ACTION_VIEW,
+                    ContactsContract.Contacts.CONTENT_URI
+            );
+            startActivity(i);
+        });
+
     }
 }
